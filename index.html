@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>RPG</title>
+</head>
+
+<body>
+    <!-- make page with selectable ids for jquery -->
+    <h1 class="display-3 text-right">RPG!</h1>
+    <!-- all character images at start -->
+    <div class="d-flex flex-row bd-highlight mb-3">
+        <div id="character-1" class="p-2 bd-highlight">Flex item 1</div>
+        <div id="character-2" class="p-2 bd-highlight">Flex item 2</div>
+        <div id="character-3" class="p-2 bd-highlight">Flex item 3</div>
+        <div id="character-4" class="p-2 bd-highlight">Flex item 4</div>
+    </div>
+    <div id="your-character"></div>
+    <!-- characters go above -->
+    <div id="enemy-choices"></div>
+    <!-- characters go above -->
+    <div id="fight-section"></div>
+    <button id="attack" class="btn btn-secondary">Attack!</button>
+    <div id="defender"></div>
+    <!-- character goes below -->
+    <div id="restart-area"></div>
+    <button id="restart" class="btn btn-warning">Restart</button>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="assets/javascript/game.js"></script>
+</body>
+
+</html>
