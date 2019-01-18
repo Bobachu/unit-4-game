@@ -8,7 +8,33 @@ var restartArea = $("restart-area")[0];
 var restartButton = $("#restart")[0];
 
 // creat 4 character objects with 3 attributes, attack power. HP, and counter attack power
+var terra = {
+    name: "Terra",
+    health: 100,
+    attack: 5,
+    counter: 5
+};
 
+var tidus = {
+    name: "Tidus",
+    health: 120,
+    attack: 8,
+    counter: 8,
+};
+
+var zidane = {
+    name: "Zidane",
+    health: 150,
+    attack: 20,
+    counter: 20,
+}
+
+var cloud = {
+    name: "Zidane",
+    health: 180,
+    attack: 25,
+    counter: 25,
+}
 // create restart button
 // on click event for restart button 
 // reset game progress to the beginning

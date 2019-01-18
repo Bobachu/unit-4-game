@@ -8,28 +8,46 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
         crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
-    <title>RPG</title>
+    <title>FF Hero Battle RPG</title>
 </head>
 
 <body>
     <!-- make page with selectable ids for jquery -->
-    <h1 class="display-3 text-right">RPG!</h1>
+    <h1 class="display-3 text-right title">Final Fantasy Hero Battle RPG!</h1>
     <!-- all character images at start -->
-    <div class="d-flex flex-row bd-highlight mb-3">
-        <div id="character-1" class="p-2 bd-highlight">Flex item 1</div>
-        <div id="character-2" class="p-2 bd-highlight">Flex item 2</div>
-        <div id="character-3" class="p-2 bd-highlight">Flex item 3</div>
-        <div id="character-4" class="p-2 bd-highlight">Flex item 4</div>
+    <div id="character-portaits" class="d-flex flex-row bd-highlight">
+        <div id="character-1" class="p-2 bd-highlight character-image"><img src="assets/images/Terra.jpg" alt="Terra">
+         </div>
+        <div id="character-2" class="p-2 bd-highlight character-image"><img src="assets/images/Cloud.jpg" alt="Cloud"></div>
+        <div id="character-3" class="p-2 bd-highlight character-image"><img src="assets/images/Zidane.png" alt="Zidane">
+        </div>
+        <div id="character-4" class="p-2 bd-highlight character-image"><img src="assets/images/Tidus.jpg" alt="Tidus"></div>
     </div>
-    <div id="your-character"></div>
+    <div id="your-character">
+        <h2>Your Character</h2>
+    </div>
     <!-- characters go above -->
-    <div id="enemy-choices"></div>
+    <div id="enemy-portraits" class="d-flex flex-row bd-highlight">
+        <div id="character-1" class="p-2 bd-highlight"><img src="assets/images/Terra.jpg" alt="Terra"></div>
+        <div id="character-2" class="p-2 bd-highlight"><img src="assets/images/Cloud.jpg" alt="Cloud"></div>
+        <div id="character-3" class="p-2 bd-highlight"><img src="assets/images/Zidane.png" alt="Zidane">
+        </div>
+        <div id="character-4" class="p-2 bd-highlight"><img src="assets/images/Tidus.jpg" alt="Tidus"></div>
+    </div>
+    <div id="enemy-choices">
+        <h2>Available Enemies</h2>
+    </div>
     <!-- characters go above -->
     <div id="fight-section"></div>
     <button id="attack" class="btn btn-secondary">Attack!</button>
-    <div id="defender"></div>
+    <div id="defender">
+        <h2>Defender</h2>
+    </div>
+    <div id="defender-image">
+        <img src="assets/images/Terra.jpg" alt="Terra">
+    </div>
     <!-- character goes below -->
-    <div id="restart-area"></div>
+    <div id="restart-area"><h6>text goes here</h6></div>
     <button id="restart" class="btn btn-warning">Restart</button>
 
 

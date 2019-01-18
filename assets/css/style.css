@@ -1,0 +1,31 @@
+body {
+    background-image: url(../images/ffvibackground.jpg);
+    background-size: cover;
+    margin-left: 20px;
+    margin-right: 20px;
+    color: #143d66;
+
+}
+
+img {
+    height: 150px;
+    width: 150px;
+    border: 25px solid white;
+}
+
+#your-character {
+    border: 0;
+}
+
+#enemy-portraits img {
+    border: 25px solid darkred;
+}
+
+#defender-image img {
+    border: 25px solid #484848;
+    margin-bottom: 20px;
+}
+
+.title {
+    margin-right: 50px;
+}
