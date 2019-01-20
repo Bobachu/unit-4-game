@@ -11,6 +11,7 @@ img {
     height: 150px;
     width: 150px;
     border: 25px solid white;
+    outline: 5px solid green;
 }
 
 #your-character {
@@ -19,6 +20,7 @@ img {
 
 #enemy-portraits img {
     border: 25px solid darkred;
+    outline: 2px solid black;
 }
 
 #defender-image img {
