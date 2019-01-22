@@ -1,12 +1,7 @@
 $(document).ready(function () {
     // create global variable 
-    var characterArea = $("#character-portaits-hero");
-    var enemyArea = $("#character-portaits-enemy");
-    var defenderArea = $("#defender-area");
-    var fightArea = $("#fight-section");
     var attackButton = $("#attack");
-    var restartArea = $("#restart-area");
-    var defeatedArea = $("#defeated-portaits");
+    var messages = $("#game-message");
     var restartButton = $("#restart");
     var heroChosen = false;
     var defenderChosen = false;
