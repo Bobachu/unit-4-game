@@ -18,12 +18,12 @@ img {
     border: 0;
 }
 
-#enemy-portraits img {
+#enemies img {
     border: 25px solid darkred;
     outline: 2px solid black;
 }
 
-#defender-image img {
+#defenders img {
     border: 25px solid #484848;
     margin-bottom: 20px;
 }
