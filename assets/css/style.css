@@ -3,9 +3,11 @@ body {
     background-size: cover;
     margin-left: 20px;
     margin-right: 20px;
-    /* color: #85a5c5; */
+    color: black;
     font-family: 'Cinzel', serif;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
+
 
 img {
     height: 150px;
@@ -35,21 +37,25 @@ img {
 .character-name {
     top: 3%;
     left: 37%;
+    text-shadow: none;
 }
 
 .character-health {
     bottom: -5%;
     left: 42%;
+    text-shadow: none;
 }
 
 .defender > .character-name {
     bottom: 6%;
     left: 3.6%;
     color: white;
+    text-shadow: none;
 }
 
 .defender > .character-health {
     bottom: 6%;
     left: 4%;
     color: white;
+    text-shadow: none;
 }
