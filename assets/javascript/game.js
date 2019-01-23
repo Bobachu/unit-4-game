@@ -5,6 +5,10 @@ $(document).ready(function () {
     var restartButton = $("#restart");
     var attacker;
     var defender;
+    var attackPower = 0;
+    var attackHealth = 0;
+    var defenderPower = 0;
+    var defenderHealth = 0;
     var heroChosen = false;
     var defenderChosen = false;
     var gameOver = false;
@@ -16,7 +20,7 @@ $(document).ready(function () {
         name: "Terra",
         health: 100,
         attack: 5,
-        counter: 5
+        counter: 5,
     };
 
     var tidus = {
@@ -34,7 +38,7 @@ $(document).ready(function () {
     };
 
     var cloud = {
-        name: "Zidane",
+        name: "Cloud",
         health: 180,
         attack: 25,
         counter: 25,
@@ -55,32 +59,45 @@ $(document).ready(function () {
             heroChosen = false;
             defenderChosen = false;
             gameOver = false;
-            attacker = null;
-            defender = null;
+            attacker = {};
+            defender = {};
             // reset all heroes to hero selection area
             if ($(".defeated-image").parent().attr("id") == "defeated") {
                 $(".defeated-image").detach().appendTo("#heroes");
                 $(".defeated-image").removeClass("defeated-image").addClass("character-image");
             }
             // if to reset class name
+            $(".selected").removeClass("selected").addClass("character-image");
+            // defender remove class and move
+            if ($(".defender").parent().attr("id") == "defenders") {
+                $(".defender").detach().appendTo("#heroes");
+                $(".defender").removeClass("defender").addClass("character-image");
+            }
+            // enemies remove class and move
+            if ($(".enemy-image").parent().attr("id") == "enemies") {
+                $(".enemy-image").detach().appendTo("#heroes");
+                $(".enemy-image").removeClass("enemy-image").addClass("character-image");
+            }
             // clear all messages (damage, no hero, you win, you lose)
             messages.empty();
             // hide restart button
             restartButton.toggle(false);
+
         });
     };
 
     // on click event to select your character
     $(document).on("click", ".character-image", function () {
+        // debugger;
         if (heroChosen) {
             return;
         }
-        
-        attacker = $(this).attr("id")
-        switch (attacker) {
+
+        switch ($(this).attr("id")) {
             case "character-1":
+                attacker = terra;
                 // selected character remains in area
-                $(".character-image:first-child").removeClass("character-image").addClass("selected");
+                $("#character-1").removeClass("character-image").addClass("selected");
                 // other characters move to enemies available area (border changes to red)
                 if ($(".character-image").parent().attr("id") == "heroes") {
                     $(".character-image").removeClass("character-image").addClass("enemy-image");
@@ -89,7 +106,8 @@ $(document).ready(function () {
                 heroChosen = true;
                 break;
             case "character-2":
-                $(".character-image:nth-child(2)").removeClass("character-image").addClass("selected");
+                attacker = tidus;
+                $("#character-2").removeClass("character-image").addClass("selected");
                 if ($(".character-image").parent().attr("id") == "heroes") {
                     $(".character-image").removeClass("character-image").addClass("enemy-image");
                     $(".enemy-image").detach().appendTo("#enemies");
@@ -97,7 +115,8 @@ $(document).ready(function () {
                 heroChosen = true;
                 break;
             case "character-3":
-                $(".character-image:nth-child(3)").removeClass("character-image").addClass("selected");
+                attacker = zidane;
+                $("#character-3").removeClass("character-image").addClass("selected");
                 if ($(".character-image").parent().attr("id") == "heroes") {
                     $(".character-image").removeClass("character-image").addClass("enemy-image");
                     $(".enemy-image").detach().appendTo("#enemies");
@@ -105,7 +124,8 @@ $(document).ready(function () {
                 heroChosen = true;
                 break;
             case "character-4":
-                $(".character-image:last-child").removeClass("character-image").addClass("selected");
+                attacker = cloud;
+                $("#character-4").removeClass("character-image").addClass("selected");
                 if ($(".character-image").parent().attr("id") == "heroes") {
                     $(".character-image").removeClass("character-image").addClass("enemy-image");
                     $(".enemy-image").detach().appendTo("#enemies");
@@ -113,18 +133,19 @@ $(document).ready(function () {
                 heroChosen = true;
                 break;
         }
-
+        attackHealth = attacker.health;
+        attackPower = attacker.attack;
     });
 
     // on click event to select enemies
-    $(document).on("click", ".enemy-image",  function () {
+    $(document).on("click", ".enemy-image", function () {
         if (defenderChosen) {
             return;
         }
 
-        defender = $(this).attr("id")
-        switch (defender) {
+        switch ($(this).attr("id")) {
             case "character-1":
+                defender = terra;
                 // selected enemy moves from enemies available to defender (border changes to black)
                 $("#character-1").removeClass("enemy-image").addClass("defender");
                 if ($(".defender").parent().attr("id") == "enemies") {
@@ -134,6 +155,7 @@ $(document).ready(function () {
                 defenderChosen = true;
                 break;
             case "character-2":
+                defender = tidus;
                 $("#character-2").removeClass("enemy-image").addClass("defender");
                 if ($(".defender").parent().attr("id") == "enemies") {
                     $(".defender").detach().appendTo("#defenders");
@@ -141,6 +163,7 @@ $(document).ready(function () {
                 defenderChosen = true;
                 break;
             case "character-3":
+                defender = zidane;
                 $("#character-3").removeClass("enemy-image").addClass("defender");
                 if ($(".defender").parent().attr("id") == "enemies") {
                     $(".defender").detach().appendTo("#defenders");
@@ -148,6 +171,7 @@ $(document).ready(function () {
                 defenderChosen = true;
                 break;
             case "character-4":
+                defender = cloud;
                 $("#character-4").removeClass("enemy-image").addClass("defender");
                 if ($(".defender").parent().attr("id") == "enemies") {
                     $(".defender").detach().appendTo("#defenders");
@@ -155,24 +179,59 @@ $(document).ready(function () {
                 defenderChosen = true;
                 break;
         };
+        defenderHealth = defender.health;
+        defenderPower = defender.counter;
     });
+
 
 
     // on click event to attack
     attackButton.on("click", function () {
-        if (heroChosen === false || defenderChosen === false) {
+        // debugger;
+        if (heroChosen === false && defenderChosen === false) {
             return;
         }
         // each time clicked attack power increases by objects attack power
-        
         // opponents HP is reduced by current attack power
-        // players HP is recuded by enemies counter attack power (static)
-        // message is shown displaying players current AP and enemies static CAP (damage dealt)
-        // when defender hp <= 0 defender is cleared 
-        // message is displayed to select another enemy
-        // when all enemies defeated: display you win message and retart button
-        // when game over display game over message and restart button
+        if (attackPower === attacker.attack) {
+            defenderHealth = (defenderHealth - attacker.attack);
+            attackPower = attackPower + attacker.attack;
+        } else {
+            defenderHealth = (defenderHealth - attackPower);
+            attackPower = attackPower + attacker.attack;
+            console.log("attack is now " + attackPower);
+        }
+        
 
+        console.log("defender health is now " + defenderHealth);
+        // players HP is recuded by enemies counter attack power (static)
+        attackHealth = (attackHealth - defender.counter);
+        console.log("attacker health is now " + attackHealth);
+        // message is shown displaying players current AP and enemies static CAP (damage dealt)
+        messages.html(attacker.name + " dealt " + attackPower + " damage to " + defender.name + "</br>" + defender.name + " dealt " + defender.counter + " right back!");
+        // when defender hp <= 0 defender is cleared 
+        if (defenderHealth <= 0 && $("#enemies").children().length >= 0) {
+            $(".defender").removeClass("defender").addClass("defeated-image");
+            if ($(".defeated-image").parent().attr("id") == "defenders") {
+                $(".defeated-image").detach().appendTo("#defeated");
+            }
+            defenderChosen = false;
+            // message is displayed to select another enemy
+            messages.text("Choose another opponent!");
+        }
+        // when all enemies defeated: display you win message and retart button
+        // may need to change children to contents below
+        if ($("#enemies").children().length === 0 && $("#defenders").children().length === 0) {
+            messages.text("Congratulations! You won!")
+            gameOver = true;
+            restart();
+        }
+        // when game over display game over message and restart button
+        if (attackHealth <= 0) {
+            messages.text("Oh no! Game over!");
+            gameOver = true;
+            restart();
+        }
     })
 
 });
