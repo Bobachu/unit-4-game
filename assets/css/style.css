@@ -3,8 +3,8 @@ body {
     background-size: cover;
     margin-left: 20px;
     margin-right: 20px;
-    color: #143d66;
-
+    /* color: #85a5c5; */
+    font-family: 'Cinzel', serif;
 }
 
 img {

@@ -200,29 +200,28 @@ $(document).ready(function () {
 
     // on click event to attack
     attackButton.on("click", function () {
-        // debugger;
-        if (heroChosen === false && defenderChosen === false) {
+        if (heroChosen === false && defenderChosen === false && gameOver === true) {
             return;
         }
         // each time clicked attack power increases by objects attack power
         // opponents HP is reduced by current attack power
-        if (attackPower === attacker.attack) {
+        if (attackPower === attacker.attack && defenderChosen === true) {
             defenderHealth = (defenderHealth - attacker.attack);
             attackPower = attackPower + attacker.attack;
             //add health display change
             $("#defenders > .defender > .character-health").html(defenderHealth);
-        } else {
+        } else if (defenderChosen === true) {
             defenderHealth = (defenderHealth - attackPower);
             attackPower = attackPower + attacker.attack;
-            console.log("attack is now " + attackPower);
             //add health display change1
             $("#defenders > .defender > .character-health").html(defenderHealth);
         }
-        console.log("defender health is now " + defenderHealth);
+        console.log(attackPower);
         // players HP is recuded by enemies counter attack power (static)
-        attackHealth = (attackHealth - defender.counter);
-        $("#heroes > .selected > .character-health").html(attackHealth);
-        console.log("attacker health is now " + attackHealth);
+        if (defenderChosen === true) {
+            attackHealth = (attackHealth - defender.counter);
+            $("#heroes > .selected > .character-health").html(attackHealth);
+        }
         // message is shown displaying players current AP and enemies static CAP (damage dealt)
         messages.html(attacker.name + " dealt " + attackPower + " damage to " + defender.name + "</br>" + defender.name + " dealt " + defender.counter + " right back!");
         // when defender hp <= 0 defender is cleared 
@@ -238,8 +237,7 @@ $(document).ready(function () {
         }
         // when all enemies defeated: display you win message and retart button
         // may need to change children to contents below
-        if ($("#enemies").children().length === 0 && $("#defenders").children().length === 0) {
-            attackButton.off("click");
+        if (attackHealth > 0 && $("#enemies").children().length === 0 && $("#defenders").children().length === 0) {
             defenderChosen = false;
             messages.text("Congratulations! You won!")
             gameOver = true;
@@ -247,7 +245,6 @@ $(document).ready(function () {
         }
         // when game over display game over message and restart button
         if (attackHealth <= 0) {
-            attackButton.off("click");
             messages.text("Oh no! Game over!");
             defenderChosen = false;
             gameOver = true;
